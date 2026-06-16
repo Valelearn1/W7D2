@@ -97,3 +97,23 @@ body {
   color: #4caf50;
   font-weight: bold;
 }
+
+.lista-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-svuota {
+  display: inline;
+  color: red;
+  border-color: red;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-right: 8px;
+}
+
+.info-storage {
+  color: #555;
+  font-style: italic;
+  font-size: 14px;
+}

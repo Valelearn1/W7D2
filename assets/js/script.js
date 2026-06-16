@@ -200,3 +200,10 @@ function caricaLibri() {
     });
   }
 }
+
+const svuotaListener = document.getElementById("svuota-tutto");
+svuotaListener.addEventListener("click", (e) => {
+  libri = [];
+  localStorage.removeItem(STORAGE_KEY);
+  renderLibri();
+});
