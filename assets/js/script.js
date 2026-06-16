@@ -227,3 +227,11 @@ svuotaListener.addEventListener("click", (e) => {
   localStorage.removeItem(STORAGE_KEY);
   renderLibri();
 });
+
+const bottoneEsporta = document.getElementById("esporta");
+bottoneEsporta.addEventListener("click", (e) => {
+  window.open(
+    "data:application/json;charset=utf-8," +
+      encodeURIComponent(JSON.stringify(libri)),
+  );
+});
