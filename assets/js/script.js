@@ -89,16 +89,27 @@ function renderLibri() {
 
     // colonna destra: stato o bottone
     const azione = document.createElement("div");
+    const stato = document.createElement("span");
+    const bottone = document.createElement("button");
+    const bottoneRimuovi = document.createElement("button");
+
     if (libro.letto) {
-      const stato = document.createElement("span");
       stato.classList.add("stato-letto");
       stato.textContent = "✓ letto";
+      bottoneRimuovi.dataset.azione = "rimuovi";
+      bottoneRimuovi.classList.add("btn-rimuovi");
+      bottoneRimuovi.textContent = "Rimuovi";
       azione.appendChild(stato);
+      azione.appendChild(bottoneRimuovi);
     } else {
-      const bottone = document.createElement("button");
       bottone.textContent = "Segna come letto";
+      bottone.classList.add("btn-letto");
       bottone.dataset.azione = "leggi";
+      bottoneRimuovi.dataset.azione = "rimuovi";
+      bottoneRimuovi.classList.add("btn-rimuovi");
+      bottoneRimuovi.textContent = "Rimuovi";
       azione.appendChild(bottone);
+      azione.appendChild(bottoneRimuovi);
     }
 
     li.appendChild(info);
