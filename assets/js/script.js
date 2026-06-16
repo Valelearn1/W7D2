@@ -170,14 +170,23 @@ form.addEventListener("submit", (e) => {
 const ul = document.getElementById("lista-libri"); // trova la lista
 
 ul.addEventListener("click", (e) => {
-  const bottone = e.target.closest("[data-azione='leggi']"); // hai cliccato il bottone "Segna come letto"?
-  if (!bottone) return; // se no, esci subito — hai cliccato altrove
-
+  const bottone = e.target.closest("[data-azione]"); // hai cliccato il bottone "Segna come letto"?
+  const azione = bottone.dataset.azione;
   const card = bottone.closest("li"); // risali al <li> che contiene il bottone
   const id = parseInt(card.dataset.id); // leggi l'id del libro da data-id
 
-  const libro = libri.find((l) => l.id === id); // trova il libro nell'array con quell'id
-  libro.segnaComeLetto(); // segna il libro come letto
+  if (azione === "leggi") {
+    const libro = libri.find((l) => l.id === id); // trova il libro nell'array con quell'id;
+    libro.segnaComeLetto(); // segna il libro come letto
+  } else if (azione === "rimuovi") {
+    const arrayLibriFiltrato = libri.filter((l) => {
+      // crea una copia dell'array Libri. rimuovendo l'id che non mi serve
+      // prendo tutti i libri che non hanno quell'id
+      return l.id !== id;
+    });
+    libri = arrayLibriFiltrato; // riassegniamo l'array "libri" x andare a salvare salvaLibri nello storage
+  }
+
   salvaLibri(); // per salvare al click
   renderLibri(); // ridisegna la lista per mostrare la spunta aggiornata
 });
