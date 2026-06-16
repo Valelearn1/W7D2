@@ -44,7 +44,7 @@ class LibroDigitale extends Libro {
 // === Stato (array di libri) ===
 const STORAGE_KEY = "libri";
 
-const libri = [];
+let libri = caricaLibri(); // deve essere let perché "Svuota tutto" ricrea l'array - carica i libri salvati nel localStorage
 
 // === Render ===
 function renderLibri() {
@@ -149,6 +149,7 @@ form.addEventListener("submit", (e) => {
   }
 
   libri.push(nuovoLibro); // aggiungo il nuovo libro all'array
+  salvaLibri(); // per salvare al submit
   renderLibri(); // ridisegno la lista a schermo
 
   e.target.reset(); // svuota tutti i campi del form
@@ -166,6 +167,7 @@ ul.addEventListener("click", (e) => {
 
   const libro = libri.find((l) => l.id === id); // trova il libro nell'array con quell'id
   libro.segnaComeLetto(); // segna il libro come letto
+  salvaLibri(); // per salvare al click
   renderLibri(); // ridisegna la lista per mostrare la spunta aggiornata
 });
 
